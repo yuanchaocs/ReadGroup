@@ -1,0 +1,52 @@
+<resources>
+
+    <!--
+        字符串命名规范：
+        1. 字符串名称以一个前缀开头，此前缀定义它们属于哪一个模块。
+        2. 如果字符串不属于任何模块，则遵守以下规则:
+            * error_ : 错误信息
+            * msg_   : 常规通知信息
+            * title_ : 标题
+            * action : 操作，例如"保存"或"取消"
+    -->
+
+    <string name="app_name">读书汇</string>
+
+    <string name="splash_slogan">[ 读好书，结良友 ]</string>
+
+    <string name="user_login">登录</string>
+    <string name="user_register">注册</string>
+    <string name="user_username">用户名</string>
+    <string name="user_password">密码</string>
+    <string name="user_action_confirm">确定</string>
+    <string name="user_error_not_null">用户名或密码不能为空</string>
+    <string name="user_error_login_fail">登录失败：%s</string>
+    <string name="user_error_register_fail">注册失败：%s</string>
+    <string name="user_register_success">注册成功</string>
+    <string name="user_error_update_avatar">修改头像失败：%s</string>
+    <string name="user_my_favorite">我收藏的:</string>
+    <string name="user_error_refresh_likes">刷新收藏列表失败：%s</string>
+
+    <string name="home_books">好书</string>
+    <string name="home_conversations">讨论</string>
+    <string name="home_contacts">书友</string>
+    <string name="home_me">我</string>
+
+    <string name="book_error_refreshing_fail">刷新失败：%s</string>
+    <string name="book_error_refresh_book_info">获取书籍详情失败：%s</string>
+    <string name="book_title_book_info">图书详情</string>
+    <string name="book_author">作者:</string>
+    <string name="book_summary">内容简介：</string>
+    <string name="book_author_introduction">关于作者：</string>
+    <string name="book_favorite_users">收藏我的：</string>
+    <string name="book_like">收藏本书</string>
+    <string name="book_dislike">取消收藏</string>
+    <string name="book_like_success">收藏成功</string>
+    <string name="book_dislike_success">取消收藏成功</string>
+    <string name="book_error_like">收藏失败：%s</string>
+    <string name="book_error_dislike">取消收藏失败：%s</string>
+    <string name="book_send_contact_invitation">添加好友</string>
+
+    <string name="action_logout">登出</string>
+
+</resources>

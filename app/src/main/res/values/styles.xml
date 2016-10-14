@@ -1,0 +1,42 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="SplashTheme" parent="AppTheme">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+    <style name="LoginButton" parent="Widget.AppCompat.Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/btn_login_bg</item>
+        <item name="android:textColor">@color/colorPrimaryDark</item>
+    </style>
+
+    <style name="DialogTitleTextView">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/size_50</item>
+        <item name="android:paddingLeft">@dimen/lay_10</item>
+        <item name="android:background">@drawable/dialog_title_bg</item>
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:textSize">@dimen/font_20</item>
+        <item name="android:gravity">center_vertical|left</item>
+    </style>
+
+    <style name="NavigationBarTextView">
+        <item name="android:layout_width">1px</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/selector_tab_text</item>
+        <item name="android:textSize">@dimen/font_12</item>
+    </style>
+
+</resources>

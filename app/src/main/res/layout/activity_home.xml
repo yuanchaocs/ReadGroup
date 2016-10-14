@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        app:title="@string/app_name"/>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
+        android:layout_width="match_parent"
+        android:layout_height="0px"
+        android:layout_weight="1"/>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_1"
+        android:background="#d6d6d6"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/lay_4"
+        android:paddingBottom="@dimen/lay_4">
+        <TextView
+            android:id="@+id/text_books"
+            style="@style/NavigationBarTextView"
+            android:drawableTop="@drawable/ic_tab_books"
+            android:text="@string/home_books"/>
+        <TextView
+            android:id="@+id/text_contacts"
+            style="@style/NavigationBarTextView"
+            android:drawableTop="@drawable/ic_tab_contacts"
+            android:text="@string/home_contacts"/>
+        <TextView
+            android:id="@+id/text_conversations"
+            style="@style/NavigationBarTextView"
+            android:drawableTop="@drawable/ic_tab_conversation"
+            android:text="@string/home_conversations"/>
+        <TextView
+            android:id="@+id/text_me"
+            style="@style/NavigationBarTextView"
+            android:drawableTop="@drawable/ic_tab_me"
+            android:text="@string/home_me"/>
+    </LinearLayout>
+
+</LinearLayout>

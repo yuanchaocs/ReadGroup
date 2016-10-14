@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/splash_bg">
+
+    <ImageView
+        android:id="@+id/image_logo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/lay_100"
+        android:src="@drawable/splash_logo"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/image_logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/lay_20"
+        android:text="@string/splash_slogan"
+        android:textSize="@dimen/font_18"
+    />
+
+    <Button
+        android:id="@+id/button_register"
+        style="@style/LoginButton"
+        android:layout_above="@+id/button_login"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/lay_10"
+        android:text="@string/user_register"/>
+
+    <Button
+        android:id="@+id/button_login"
+        style="@style/LoginButton"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="@dimen/lay_40"
+        android:text="@string/user_login"/>
+
+</RelativeLayout>

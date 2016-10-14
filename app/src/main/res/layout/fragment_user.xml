@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/image_avatar"
+        android:layout_width="@dimen/size_48"
+        android:layout_height="@dimen/size_48"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_margin="@dimen/lay_20"
+        android:scaleType="centerCrop"/>
+    <TextView
+        android:id="@+id/text_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/image_avatar"
+        android:layout_toRightOf="@+id/image_avatar"
+        android:layout_toLeftOf="@+id/button_logout"/>
+
+    <Button
+        android:id="@+id/button_logout"
+        style="@style/LoginButton"
+        android:layout_width="@dimen/size_80"
+        android:layout_height="@dimen/size_30"
+        android:layout_alignBottom="@+id/image_avatar"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/lay_20"
+        android:text="@string/action_logout"/>
+
+    <TextView
+        android:id="@+id/text_likes_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/image_avatar"
+        android:background="@color/brown"
+        android:gravity="center_vertical"
+        android:padding="@dimen/lay_5"
+        android:text="@string/user_my_favorite"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/font_18"/>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/layout_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/text_likes_header">
+        <ListView
+            android:id="@+id/list_book"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:divider="?attr/dividerHorizontal"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="invisible"/>
+
+
+</RelativeLayout>

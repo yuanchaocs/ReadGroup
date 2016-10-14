@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/text_title"
+        style="@style/DialogTitleTextView"
+        android:text="@string/user_login"/>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/layout_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_title"
+        android:layout_marginTop="@dimen/lay_20"
+        android:layout_marginLeft="@dimen/lay_10"
+        android:layout_marginRight="@dimen/lay_10">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/edit_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/user_username"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/layout_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout_username"
+        android:layout_marginTop="@dimen/lay_10"
+        android:layout_marginLeft="@dimen/lay_10"
+        android:layout_marginRight="@dimen/lay_10">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/edit_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/user_password"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/button_confirm"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible"/>
+
+    <Button
+        android:id="@+id/button_confirm"
+        style="@style/LoginButton"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/layout_password"
+        android:layout_marginTop="@dimen/lay_40"
+        android:layout_marginBottom="@dimen/lay_20"
+        android:text="@string/user_action_confirm"/>
+
+
+</RelativeLayout>
