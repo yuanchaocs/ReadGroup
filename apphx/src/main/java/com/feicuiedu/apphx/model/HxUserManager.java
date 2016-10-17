@@ -2,8 +2,9 @@ package com.feicuiedu.apphx.model;
 
 import android.support.annotation.NonNull;
 
-import com.feicuiedu.apphx.model.event.HxLoginEvent;
-import com.feicuiedu.apphx.model.event.HxRegisterEvent;
+import com.feicuiedu.apphx.model.event.HxErrorEvent;
+import com.feicuiedu.apphx.model.event.HxEventType;
+import com.feicuiedu.apphx.model.event.HxSimpleEvent;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.exceptions.HyphenateException;
@@ -52,11 +53,11 @@ public class HxUserManager {
                     emClient.createAccount(hxId, password);
                     Timber.d("%s RegisterHx success", hxId);
                     // 成功了
-                    eventBus.post(new HxRegisterEvent());
+                    eventBus.post(new HxSimpleEvent(HxEventType.REGISTER));
                 } catch (HyphenateException e) {
                     Timber.d("RegisterHx fail");
                     // 失败了
-                    eventBus.post(new HxRegisterEvent(e));
+                    eventBus.post(new HxErrorEvent(HxEventType.REGISTER, e));
                 }
             }
         };
@@ -71,12 +72,12 @@ public class HxUserManager {
         emClient.login(hxId, password, new EMCallBack() {
             @Override public void onSuccess() {
                 Timber.d("%s LoginHx success", hxId);
-                eventBus.post(new HxLoginEvent());
+                eventBus.post(new HxSimpleEvent(HxEventType.LOGIN));
             }
 
             @Override public void onError(int code, String message) {
                 Timber.d("%s LoginHx error, code is %s.", hxId, code);
-                eventBus.post(new HxLoginEvent(code, message));
+                eventBus.post(new HxErrorEvent(HxEventType.LOGIN, code, message));
             }
 
             @Override public void onProgress(int i, String s) {

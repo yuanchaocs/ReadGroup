@@ -64,12 +64,12 @@
         "source": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_dx_checkbox_on.png"
     },
     {
-        "merged": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ee_18.png",
-        "source": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ee_18.png"
-    },
-    {
         "merged": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ee_23.png",
         "source": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ee_23.png"
+    },
+    {
+        "merged": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ee_18.png",
+        "source": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ee_18.png"
     },
     {
         "merged": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_video_recorder_start_btn.png",
@@ -432,12 +432,12 @@
         "source": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ease_record_animate_09.png"
     },
     {
-        "merged": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ee_28.png",
-        "source": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ee_28.png"
-    },
-    {
         "merged": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ee_25.png",
         "source": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ee_25.png"
+    },
+    {
+        "merged": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ee_28.png",
+        "source": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\bundles\\debug\\res\\drawable-hdpi-v4\\ee_28.png"
     },
     {
         "merged": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\drawable-hdpi-v4\\ease_record_animate_03.png",

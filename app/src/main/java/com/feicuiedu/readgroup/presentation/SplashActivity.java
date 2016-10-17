@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import com.feicuiedu.readgroup.R;
 import com.feicuiedu.readgroup.presentation.user.login.LoginFragment;
+import com.feicuiedu.readgroup.presentation.user.register.RegisterFragment;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -12,6 +13,7 @@ import butterknife.OnClick;
 public class SplashActivity extends AppCompatActivity {
 
     private LoginFragment loginFragment;
+    private RegisterFragment registerFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,14 @@ public class SplashActivity extends AppCompatActivity {
             loginFragment = new LoginFragment();
         }
         loginFragment.show(getSupportFragmentManager(), null);
+    }
+
+    @OnClick(R.id.button_register)
+    public void showRegisterDialog() {
+        if (registerFragment == null) {
+            registerFragment = new RegisterFragment();
+        }
+        registerFragment.show(getSupportFragmentManager(), null);
     }
 
 }
