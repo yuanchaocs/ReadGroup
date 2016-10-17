@@ -12,19 +12,22 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 /**
- * 协调人
+ * 环信联系人列表页面 - Presenter
+ * <p/>
+ * MVP的Presenter:主要负责执行model层业务,接收model层数据,触发view层视图
+ * <p/>
  * 作者：yuanchao on 2016/10/17 0017 12:02
  * 邮箱：yuanchao@feicuiedu.com
  */
 
-public class HxContactListPresenter extends MvpPresenter<HxContactListView>{
+public class HxContactListPresenter extends MvpPresenter<HxContactListView> {
 
     @NonNull @Override protected HxContactListView getNullObject() {
         return HxContactListView.NULL;
     }
 
     // 执行业务
-    public void loadContacts(){
+    public void loadContacts() {
         HxContactManager.getInstance().getContacts();
     }
 
@@ -37,7 +40,7 @@ public class HxContactListPresenter extends MvpPresenter<HxContactListView>{
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(HxRefreshContactEvent event) {
         // 是否有更新
-        if(event.changed){
+        if (event.changed) {
             // 设置到视图
             getView().setContacts(event.contacts);
         }
@@ -45,9 +48,9 @@ public class HxContactListPresenter extends MvpPresenter<HxContactListView>{
     }
 
     // 接收model层错误事件
-    public void onEvent(HxErrorEvent event){
+    public void onEvent(HxErrorEvent event) {
         // 不是删除联系人的错误事件，不做处理
-        if(event.type != HxEventType.DELETE_CONTACT)return;
+        if (event.type != HxEventType.DELETE_CONTACT) return;
         getView().showDeleteContactFail(event.toString());
     }
 }

@@ -20,8 +20,10 @@ import java.util.concurrent.Executors;
 import timber.log.Timber;
 
 /**
- * 环信联系人管理类
- * <p>
+ * 环信联系人管理
+ * <p/>
+ * MVP的model:主要负责业务处理,且将结果通过EventBus发送到Presenter中去处理
+ * <p/>
  * 作者：yuanchao on 2016/10/17 0017 10:03
  * 邮箱：yuanchao@feicuiedu.com
  */
@@ -43,14 +45,15 @@ public class HxContactManager implements EMContactListener, EMConnectionListener
     private final ExecutorService executorService;
 
     private HxContactManager() {
-        EMClient.getInstance().addConnectionListener(this);
-        // 环信联系人相关操作SDK
-        emContactManager = EMClient.getInstance().contactManager();
-        emContactManager.setContactListener(this);
         // EventBus
         eventBus = EventBus.getDefault();
         // 线程池
         executorService = Executors.newSingleThreadExecutor();
+        // 环信连接监听
+        EMClient.getInstance().addConnectionListener(this);
+        // 环信联系人相关操作SDK
+        emContactManager = EMClient.getInstance().contactManager();
+        emContactManager.setContactListener(this);
     }
 
     /**
