@@ -39,6 +39,7 @@ public class HxContactManager implements EMContactListener, EMConnectionListener
     }
 
     private List<String> contacts; // 联系人列表集合
+    private String currentUserId;
 
     private final EMContactManager emContactManager;
     private final EventBus eventBus;
@@ -116,8 +117,13 @@ public class HxContactManager implements EMContactListener, EMConnectionListener
         executorService.submit(runnable);
     }
 
+    public void setCurrentUser(String hxId) {
+        this.currentUserId = hxId;
+    }
+
     public void reset() {
         contacts = null;
+        currentUserId = null;
     }
 
     // start-interface: EMConnectionListener

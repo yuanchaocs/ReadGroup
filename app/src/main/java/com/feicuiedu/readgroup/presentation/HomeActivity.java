@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.feicuiedu.apphx.presentation.contact.HxContactListFragment;
+import com.feicuiedu.apphx.presentation.conversation.HxConversationListFragment;
 import com.feicuiedu.readgroup.R;
 import com.feicuiedu.readgroup.presentation.books.BooksFragment;
 
@@ -35,7 +36,7 @@ public class HomeActivity extends AppCompatActivity implements ViewPager.OnPageC
                 case 1:
                     return new HxContactListFragment();
                 case 2:
-                    return new BooksFragment();
+                    return new HxConversationListFragment();
                 case 3:
                     return new BooksFragment();
                 default:
@@ -47,7 +48,6 @@ public class HomeActivity extends AppCompatActivity implements ViewPager.OnPageC
             return 4;
         }
     };
-
 
     @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

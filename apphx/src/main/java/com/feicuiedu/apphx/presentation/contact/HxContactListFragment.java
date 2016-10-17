@@ -32,14 +32,15 @@ public class HxContactListFragment extends EaseContactListFragment implements Hx
 
     @Override public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        presenter = new HxContactListPresenter();// 创建你的协调人
-        presenter.onCreate();
-
+        // 此方法要在 onActivityCreated 之前调用才有效
         setContactListItemClickListener(new EaseContactListItemClickListener() {
             @Override public void onListItemClicked(EaseUser user) {
                 HxChatActivity.open(getContext(), user.getUsername());
             }
         });
+
+        presenter = new HxContactListPresenter();// 创建你的协调人
+        presenter.onCreate();
     }
 
     @Override public void onActivityCreated(Bundle savedInstanceState) {
