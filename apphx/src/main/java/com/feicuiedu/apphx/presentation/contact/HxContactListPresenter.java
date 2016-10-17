@@ -1,4 +1,4 @@
-package com.feicuiedu.apphx.presentation;
+package com.feicuiedu.apphx.presentation.contact;
 
 import android.support.annotation.NonNull;
 
@@ -10,6 +10,8 @@ import com.feicuiedu.apphx.model.event.HxRefreshContactEvent;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+import timber.log.Timber;
 
 /**
  * 环信联系人列表页面 - Presenter
@@ -44,6 +46,8 @@ public class HxContactListPresenter extends MvpPresenter<HxContactListView> {
             // 设置到视图
             getView().setContacts(event.contacts);
         }
+
+        Timber.d(" ---------------  " + event.contacts.size());
         getView().refreshContacts();
     }
 

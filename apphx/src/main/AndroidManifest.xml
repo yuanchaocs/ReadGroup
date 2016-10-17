@@ -43,6 +43,37 @@
             </intent-filter>
         </receiver>
         <!-- *********环信相关配置:结束********* -->
+
+        <!-- 聊天页面 -->
+        <activity
+            android:name=".presentation.chat.HxChatActivity"
+            android:screenOrientation="portrait">
+        </activity>
+
+        <!-- 显示下载大图页面 -->
+        <activity
+            android:name="com.hyphenate.easeui.ui.EaseShowBigImageActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/horizontal_slide"/>
+
+        <!-- *********地图相关功能:开始********* -->
+        <!-- 地图页面，用于分享位置 -->
+        <activity
+            android:name="com.hyphenate.easeui.ui.EaseBaiduMapActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/HxAppTheme"/>
+
+        <!-- 百度地图所需的service -->
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote"/>
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="P1IAcH7dXxo4P6dFwxkeEb0KHNBdi2Sf"/>
+        <!-- *********地图相关功能:结束********* -->
+
     </application>
 
 </manifest>

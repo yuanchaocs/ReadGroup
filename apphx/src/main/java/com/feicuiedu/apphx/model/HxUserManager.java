@@ -59,7 +59,6 @@ public class HxUserManager implements EMConnectionListener {
         Timber.d("onDisconnected error code: %d", error);
         switch (error){
             case EMError.USER_REMOVED: // 用户账号被删除
-                break;
             case EMError.USER_LOGIN_ANOTHER_DEVICE: // 用户在其它设备登录
                 setCurrentUserId(null);
                 eventBus.post(new HxDisconnectEvent(error));

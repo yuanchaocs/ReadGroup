@@ -9,7 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.feicuiedu.apphx.presentation.HxContactListFragment;
+import com.feicuiedu.apphx.presentation.contact.HxContactListFragment;
 import com.feicuiedu.readgroup.R;
 import com.feicuiedu.readgroup.presentation.books.BooksFragment;
 

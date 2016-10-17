@@ -134,6 +134,7 @@ public class HxContactManager implements EMContactListener, EMConnectionListener
     // start contact ContactListener -------------------------
     // 添加联系人
     @Override public void onContactAdded(String hxId) {
+        Timber.d("onContactAdded %s", hxId);
         if (contacts == null) {
             asyncGetContactsFromServer();
         } else {
@@ -144,6 +145,7 @@ public class HxContactManager implements EMContactListener, EMConnectionListener
 
     // 删除联系人
     @Override public void onContactDeleted(String hxId) {
+        Timber.d("onContactDeleted %s", hxId);
         if (contacts == null) {
             asyncGetContactsFromServer();
         } else {
@@ -154,17 +156,18 @@ public class HxContactManager implements EMContactListener, EMConnectionListener
 
     // 收到好友邀请
     @Override public void onContactInvited(String hxId, String reason) {
-
+        Timber.d("onContactInvited %s, reason: %s", hxId, reason);
     }
 
     // 好友请求被同意
-    @Override public void onContactAgreed(String s) {
+    @Override public void onContactAgreed(String hxId) {
+        Timber.d("onContactAgreed %s", hxId);
 
     }
 
     // 好友请求被拒绝
-    @Override public void onContactRefused(String s) {
-
+    @Override public void onContactRefused(String hxId) {
+        Timber.d("onContactRefused %s", hxId);
     }
 
     // end contact ContactListener -------------------------

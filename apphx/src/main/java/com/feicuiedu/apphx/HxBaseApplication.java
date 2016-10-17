@@ -17,6 +17,7 @@ import timber.log.Timber;
 
 /**
  * 环信相关基础配置
+ *
  * 作者：yuanchao on 2016/10/11 0011 11:22
  * 邮箱：yuanchao@feicuiedu.com
  */
@@ -44,6 +45,7 @@ public abstract class HxBaseApplication extends Application {
         EMClient.getInstance().setDebugMode(false);
     }
 
+    // 异常登出情况处理
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(HxDisconnectEvent event){
         if (event.errorCode == EMError.USER_LOGIN_ANOTHER_DEVICE) {

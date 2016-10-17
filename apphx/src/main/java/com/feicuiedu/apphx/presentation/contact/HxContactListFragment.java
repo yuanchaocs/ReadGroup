@@ -1,4 +1,4 @@
-package com.feicuiedu.apphx.presentation;
+package com.feicuiedu.apphx.presentation.contact;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.feicuiedu.apphx.R;
+import com.feicuiedu.apphx.presentation.chat.HxChatActivity;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.ui.EaseContactListFragment;
 
@@ -33,6 +34,12 @@ public class HxContactListFragment extends EaseContactListFragment implements Hx
         super.onCreate(savedInstanceState);
         presenter = new HxContactListPresenter();// 创建你的协调人
         presenter.onCreate();
+
+        setContactListItemClickListener(new EaseContactListItemClickListener() {
+            @Override public void onListItemClicked(EaseUser user) {
+                HxChatActivity.open(getContext(), user.getUsername());
+            }
+        });
     }
 
     @Override public void onActivityCreated(Bundle savedInstanceState) {
