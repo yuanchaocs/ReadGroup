@@ -4,15 +4,10 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/layout_refresh"
+    <Button
+        android:id="@+id/button_logout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ListView
-            android:id="@+id/list_book"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:divider="?attr/dividerHorizontal"/>
-    </android.support.v4.widget.SwipeRefreshLayout>
+        android:layout_height="wrap_content"
+        android:text="@string/action_logout"/>
 
 </LinearLayout>

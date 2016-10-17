@@ -1,8 +1,10 @@
 package com.feicuiedu.readgroup.presentation;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.feicuiedu.apphx.model.HxUserManager;
 import com.feicuiedu.readgroup.R;
 import com.feicuiedu.readgroup.presentation.user.login.LoginFragment;
 import com.feicuiedu.readgroup.presentation.user.register.RegisterFragment;
@@ -18,6 +20,13 @@ public class SplashActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //
+        if (HxUserManager.getInstance().isLogin()) {
+            Intent intent = new Intent(this, HomeActivity.class);
+            startActivity(intent);
+            finish();
+        }
+
         setContentView(R.layout.activity_splash);
     }
 

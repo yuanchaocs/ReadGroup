@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.feicuiedu.apphx.model.HxUserManager;
 import com.feicuiedu.readgroup.R;
 
 import butterknife.ButterKnife;
@@ -31,5 +32,11 @@ public class BooksFragment extends Fragment {
     @Override public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @OnClick(R.id.button_logout)
+    public void logout(){
+        HxUserManager.getInstance().asyncLogout();
+        getActivity().finish();
     }
 }

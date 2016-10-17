@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -56,6 +57,11 @@ public class LoginFragment extends DialogFragment implements LoginView {
     public void login() {
         String username = etUsername.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
+        if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) {
+            String info = getString(R.string.user_error_not_null);
+            Toast.makeText(getContext(), info, Toast.LENGTH_SHORT).show();
+            return;
+        }
         loginPresenter.login(username, password);
     }
 
@@ -91,6 +97,5 @@ public class LoginFragment extends DialogFragment implements LoginView {
         Intent intent = new Intent(getContext(), HomeActivity.class);
         startActivity(intent);
         getActivity().finish();
-    }
-    // end View Interface -------------------------------------
+    }// end View Interface -------------------------------------
 }
