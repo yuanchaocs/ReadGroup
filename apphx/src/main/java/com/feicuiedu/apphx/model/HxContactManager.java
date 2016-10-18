@@ -4,8 +4,10 @@ import com.feicuiedu.apphx.model.event.HxErrorEvent;
 import com.feicuiedu.apphx.model.event.HxEventType;
 import com.feicuiedu.apphx.model.event.HxRefreshContactEvent;
 import com.feicuiedu.apphx.model.event.HxSearchContactEvent;
+import com.feicuiedu.apphx.model.event.HxSimpleEvent;
 import com.feicuiedu.apphx.model.repository.ILocalUsersRepo;
 import com.feicuiedu.apphx.model.repository.IRemoteUserRepo;
+import com.google.gson.Gson;
 import com.hyphenate.EMConnectionListener;
 import com.hyphenate.EMContactListener;
 import com.hyphenate.chat.EMClient;
@@ -49,7 +51,13 @@ public class HxContactManager implements EMContactListener, EMConnectionListener
     private final EventBus eventBus;
     private final ExecutorService executorService;
 
+    private final Gson gson;
+
+    private IRemoteUserRepo remoteUsersRepo; /** 远程用户仓库  {@link #asyncSearchContacts(String)}*/
+    private ILocalUsersRepo localUsersRepo;  /** 本地用户仓库 */
+
     private HxContactManager() {
+        gson = new Gson();
         // EventBus
         eventBus = EventBus.getDefault();
         // 线程池
@@ -60,6 +68,27 @@ public class HxContactManager implements EMContactListener, EMConnectionListener
         emContactManager = EMClient.getInstance().contactManager();
         emContactManager.setContactListener(this);
     }
+
+    // 初始远程仓库
+    public HxContactManager initRemoteUserRepo(IRemoteUserRepo remoteUsersRepo){
+        this.remoteUsersRepo = remoteUsersRepo;
+        return this;
+    }
+
+    // 初始本地仓库
+    public HxContactManager initLocalUsersRepo(ILocalUsersRepo localUsersRepo){
+        this.localUsersRepo = localUsersRepo;
+        return this;
+    }
+    // start-interface: EMConnectionListener
+    @Override public void onConnected() {
+        if (contacts == null) {
+            asyncGetContactsFromServer();
+        }
+    }
+
+    @Override public void onDisconnected(int i) {
+    }// end-interface: EMConnectionListener
 
     /**
      * 获取联系人
@@ -75,33 +104,18 @@ public class HxContactManager implements EMContactListener, EMConnectionListener
         }
     }
 
-    // 远程仓库(一般指的主是应用服务器)
-    private IRemoteUserRepo remoteUsersRepo;
-    private ILocalUsersRepo localUsersRepo;
-
-    // 初始远程仓库
-    public HxContactManager initRemoteUserRepo(IRemoteUserRepo remoteUsersRepo){
-        this.remoteUsersRepo = remoteUsersRepo;
-        return this;
-    }
-
-    public HxContactManager initLocalUsersRepo(ILocalUsersRepo localUsersRepo){
-        this.localUsersRepo = localUsersRepo;
-        return this;
-    }
-
-    /** 搜索用户，业务流程
+    /** 搜索用户
      * <p/>
      * 环信服务器不提供搜索功能，搜索完全由App和应用服务器实现*/
     public void asyncSearchContacts(final String username){
         Runnable runnable = new Runnable() {
             @Override public void run() {
                 try {
-                    // 上应用服务器获取数据 , 还没有应用服务器  (到远程用户仓库去查询数据)
+                    // 从应用服务器查询用户列表
                     List<EaseUser> user = remoteUsersRepo.queryByName(username); // test01 test02 test03
-                    // 缓存到本地 , 只知道缓存 (只要是你操作过，用过，见过的用户EaseUser，都应该要缓存起来)
+                    // 将查询到的接口存储到本地数据仓库中
                     localUsersRepo.saveAll(user);
-                    // 将结果发送到presenter
+                    // 将结果发送给Presenter
                     eventBus.post(new HxSearchContactEvent(user));
                 } catch (Exception e) {
                     Timber.e(e,"asyncSearchContacts");
@@ -110,6 +124,65 @@ public class HxContactManager implements EMContactListener, EMConnectionListener
             }
         };
         executorService.submit(runnable);
+    }
+
+    /**
+     * 删除联系人,如果删除成功，会自己触发{@link #onContactDeleted(String)}
+     * <p/>
+     * 注意：A将B删除了, B客户端的{@link #onContactDeleted(String)}也会触发
+     *
+     * @param hxId 对方的环信id
+     */
+    public void asyncDeleteContact(final String hxId) {
+        Runnable runnable = new Runnable() {
+            @Override public void run() {
+                try {
+                    emContactManager.deleteContact(hxId);
+                } catch (HyphenateException e) {
+                    Timber.e(e, "deleteContact");
+                    // 删除失败
+                    eventBus.post(new HxErrorEvent(HxEventType.DELETE_CONTACT, e));
+                }
+            }
+        };
+        executorService.submit(runnable);
+    }
+
+    /**
+     * 发送好友邀请
+     */
+    public void asyncSendInvite(final String hxId) {
+        final EaseUser easeUser = localUsersRepo.getUser(currentUserId);
+
+        Runnable runnable = new Runnable() {
+            @Override public void run() {
+                try {
+                    // 添加、发送联系人邀请(理由中带过去你的用户信息)
+                    emContactManager.addContact(hxId, gson.toJson(easeUser));
+                    eventBus.post(new HxSimpleEvent(HxEventType.SEND_INVITE));
+                } catch (HyphenateException e) {
+                    Timber.e(e, "asyncSendInvite");
+                    eventBus.post(new HxErrorEvent(HxEventType.SEND_INVITE, e));
+                }
+            }
+        };
+
+        executorService.submit(runnable);
+    }
+
+    public void setCurrentUser(String hxId) {
+        this.currentUserId = hxId;
+    }
+
+    public void reset() {
+        contacts = null;
+        currentUserId = null;
+    }
+
+
+
+    public boolean isFriend(String hxId) {
+        return contacts != null && contacts.contains(hxId);
     }
 
     private void asyncGetContactsFromServer() {
@@ -135,48 +208,6 @@ public class HxContactManager implements EMContactListener, EMConnectionListener
         }
         eventBus.post(new HxRefreshContactEvent(currentContacts));
     }
-
-    /**
-     * 删除联系人,如果删除成功，会自己触发{@link #onContactDeleted(String)}
-     * <p/>
-     * 注意：A将B删除了, B客户端的{@link #onContactDeleted(String)}也会触发
-     *
-     * @param hxId 对方的环信id
-     */
-    public void deleteContact(final String hxId) {
-        Runnable runnable = new Runnable() {
-            @Override public void run() {
-                try {
-                    emContactManager.deleteContact(hxId);
-                } catch (HyphenateException e) {
-                    Timber.e(e, "deleteContact");
-                    // 删除失败
-                    eventBus.post(new HxErrorEvent(HxEventType.DELETE_CONTACT, e));
-                }
-            }
-        };
-        executorService.submit(runnable);
-    }
-
-    public void setCurrentUser(String hxId) {
-        this.currentUserId = hxId;
-    }
-
-    public void reset() {
-        contacts = null;
-        currentUserId = null;
-    }
-
-    // start-interface: EMConnectionListener
-    @Override public void onConnected() {
-        if (contacts == null) {
-            asyncGetContactsFromServer();
-        }
-    }
-
-    @Override public void onDisconnected(int i) {
-    }
-    // end-interface: EMConnectionListener
 
     // start contact ContactListener -------------------------
     // 添加联系人

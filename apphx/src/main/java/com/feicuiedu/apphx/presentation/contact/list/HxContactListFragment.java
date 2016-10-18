@@ -1,5 +1,6 @@
-package com.feicuiedu.apphx.presentation.contact;
+package com.feicuiedu.apphx.presentation.contact.list;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.ContextMenu;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import com.feicuiedu.apphx.R;
 import com.feicuiedu.apphx.presentation.chat.HxChatActivity;
+import com.feicuiedu.apphx.presentation.contact.search.HxSearchContactActivity;
 import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.easeui.ui.EaseContactListFragment;
 
@@ -87,7 +89,8 @@ public class HxContactListFragment extends EaseContactListFragment implements Hx
         View addContacts = headerView.findViewById(R.id.layout_add_contacts);
         addContacts.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
-                // TODO: 2016/10/17 0017  添加新朋友
+                Intent intent = new Intent(getContext(), HxSearchContactActivity.class);
+                startActivity(intent);
             }
         });
         // 邀请和通知

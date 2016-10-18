@@ -44,6 +44,22 @@
         </receiver>
         <!-- *********环信相关配置:结束********* -->
 
+        <!-- 搜索联系人页面 -->
+        <activity android:name=".presentation.contact.search.HxSearchContactActivity"
+                  android:launchMode="singleTop"
+                  android:screenOrientation="portrait"
+                  android:theme="@style/HxSearchTheme">
+            <meta-data android:name="android.app.searchable"
+                       android:resource="@xml/searchable"/>
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH"/>
+            </intent-filter>
+        </activity>
+
+        <!-- 搜索建议内容提供者 -->
+        <provider android:name=".presentation.contact.search.HxSearchContactProvider"
+                  android:authorities="@string/hx_contact_search_provider_authority"
+                  android:exported="false"/>
         <!-- 聊天页面 -->
         <activity
             android:name=".presentation.chat.HxChatActivity"
