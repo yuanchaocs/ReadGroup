@@ -4,6 +4,10 @@ import android.app.Application;
 import android.widget.Toast;
 
 import com.feicuiedu.apphx.model.event.HxDisconnectEvent;
+import com.feicuiedu.apphx.model.repository.DefaultLocalUsersRepo;
+import com.feicuiedu.apphx.model.repository.ILocalUsersRepo;
+import com.feicuiedu.apphx.model.repository.IRemoteUserRepo;
+import com.feicuiedu.apphx.model.repository.MockRemoteUsersRepo;
 import com.hyphenate.EMError;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMOptions;
@@ -32,15 +36,26 @@ public abstract class HxBaseApplication extends Application {
         // 初始化环信sdk和easeui库
         initEaseUI();
 
+        // 初始化apphx模块
+        initHxModule();
+
         EventBus.getDefault().register(this);
+    }
+
+    protected void initHxModule(){
+        IRemoteUserRepo remoteUsersRepo = new MockRemoteUsersRepo();
+        ILocalUsersRepo localUsersRepo = DefaultLocalUsersRepo.getInstance(this);
+        HxModuleInitializer.getInstance().init(remoteUsersRepo,localUsersRepo);
     }
 
     private void initEaseUI() {
         EMOptions options = new EMOptions();
         // 关闭自动登录
         options.setAutoLogin(false);
-        EaseUI.getInstance().init(this, options);
+        // 默认添加好友时是不需要验证的,改为需要
+        options.setAcceptInvitationAlways(false);
 
+        EaseUI.getInstance().init(this, options);
         // 关闭环信日志
         EMClient.getInstance().setDebugMode(false);
     }

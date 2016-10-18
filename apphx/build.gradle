@@ -32,4 +32,5 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     // 一个日志工具
     compile 'com.jakewharton.timber:timber:4.2.0'
+    compile 'com.google.code.gson:gson:2.7'
 }

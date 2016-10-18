@@ -3,10 +3,14 @@ package com.feicuiedu.apphx.model;
 import com.feicuiedu.apphx.model.event.HxErrorEvent;
 import com.feicuiedu.apphx.model.event.HxEventType;
 import com.feicuiedu.apphx.model.event.HxRefreshContactEvent;
+import com.feicuiedu.apphx.model.event.HxSearchContactEvent;
+import com.feicuiedu.apphx.model.repository.ILocalUsersRepo;
+import com.feicuiedu.apphx.model.repository.IRemoteUserRepo;
 import com.hyphenate.EMConnectionListener;
 import com.hyphenate.EMContactListener;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMContactManager;
+import com.hyphenate.easeui.domain.EaseUser;
 import com.hyphenate.exceptions.HyphenateException;
 
 import org.greenrobot.eventbus.EventBus;
@@ -69,6 +73,43 @@ public class HxContactManager implements EMContactListener, EMConnectionListener
         else {
             asyncGetContactsFromServer();
         }
+    }
+
+    // 远程仓库(一般指的主是应用服务器)
+    private IRemoteUserRepo remoteUsersRepo;
+    private ILocalUsersRepo localUsersRepo;
+
+    // 初始远程仓库
+    public HxContactManager initRemoteUserRepo(IRemoteUserRepo remoteUsersRepo){
+        this.remoteUsersRepo = remoteUsersRepo;
+        return this;
+    }
+
+    public HxContactManager initLocalUsersRepo(ILocalUsersRepo localUsersRepo){
+        this.localUsersRepo = localUsersRepo;
+        return this;
+    }
+
+    /** 搜索用户，业务流程
+     * <p/>
+     * 环信服务器不提供搜索功能，搜索完全由App和应用服务器实现*/
+    public void asyncSearchContacts(final String username){
+        Runnable runnable = new Runnable() {
+            @Override public void run() {
+                try {
+                    // 上应用服务器获取数据 , 还没有应用服务器  (到远程用户仓库去查询数据)
+                    List<EaseUser> user = remoteUsersRepo.queryByName(username); // test01 test02 test03
+                    // 缓存到本地 , 只知道缓存 (只要是你操作过，用过，见过的用户EaseUser，都应该要缓存起来)
+                    localUsersRepo.saveAll(user);
+                    // 将结果发送到presenter
+                    eventBus.post(new HxSearchContactEvent(user));
+                } catch (Exception e) {
+                    Timber.e(e,"asyncSearchContacts");
+                    eventBus.post(new HxSearchContactEvent(e.getMessage()));
+                }
+            }
+        };
+        executorService.submit(runnable);
     }
 
     private void asyncGetContactsFromServer() {

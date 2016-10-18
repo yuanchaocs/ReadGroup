@@ -8,12 +8,12 @@
         "source": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_widget_switch_button.xml"
     },
     {
-        "merged": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_fragment_chat.xml",
-        "source": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_fragment_chat.xml"
-    },
-    {
         "merged": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_commom_back_btn.xml",
         "source": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_commom_back_btn.xml"
+    },
+    {
+        "merged": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_fragment_chat.xml",
+        "source": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_fragment_chat.xml"
     },
     {
         "merged": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_search_bar_with_padding.xml",
@@ -80,12 +80,12 @@
         "source": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_conversation_item.xml"
     },
     {
-        "merged": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_activity_show_file.xml",
-        "source": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_activity_show_file.xml"
-    },
-    {
         "merged": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_search_bar.xml",
         "source": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_search_bar.xml"
+    },
+    {
+        "merged": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_activity_show_file.xml",
+        "source": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\bundles\\debug\\res\\layout\\ease_activity_show_file.xml"
     },
     {
         "merged": "F:\\SVN\\project\\review\\ReadGroup\\ReadGroup\\easeui\\build\\intermediates\\res\\merged\\androidTest\\debug\\layout\\ease_row_sent_message.xml",
